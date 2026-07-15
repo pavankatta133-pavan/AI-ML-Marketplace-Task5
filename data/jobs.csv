@@ -1,0 +1,6 @@
+job_id,company,role,Python,SQL,Flask,Machine_Learning,Communication,Experience,Location
+101,Google,ML Engineer,85,70,70,90,80,2,Bangalore
+102,TCS,Python Developer,80,65,85,60,75,1,Hyderabad
+103,Infosys,Data Analyst,70,90,60,55,80,2,Chennai
+104,Wipro,AI Engineer,88,75,70,85,85,2,Bangalore
+105,Accenture,Backend Developer,75,70,90,50,78,1,Hyderabad
