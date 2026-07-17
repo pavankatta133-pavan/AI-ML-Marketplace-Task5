@@ -145,7 +145,8 @@ def home():
         "available_endpoints": [
             "/api/explain/1",
             "/api/company/jobs",
-            "/api/company/validate/1"
+            "/api/company/validate/1",
+            "/api/monetization/tuning"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -156,6 +157,15 @@ def evaluation_baseline():
         "jobs_available": int(len(jobs)),
         "status": "Quality baseline recorded",
         "phase": "Pre-Monetization"
+    })
+@app.route("/api/monetization/tuning", methods=["GET"])
+def monetization_tuning():
+
+    return jsonify({
+        "status": "Ranking tuned for conversion",
+        "students": int(len(students)),
+        "jobs": int(len(jobs)),
+        "top_recommendations": 3
     })
 
 if __name__ == "__main__":
