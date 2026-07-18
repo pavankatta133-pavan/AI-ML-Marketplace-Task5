@@ -146,7 +146,8 @@ def home():
             "/api/explain/1",
             "/api/company/jobs",
             "/api/company/validate/1",
-            "/api/monetization/tuning"
+            "/api/monetization/tuning",
+            "/api/guardrails/spend/1"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -166,6 +167,59 @@ def monetization_tuning():
         "students": int(len(students)),
         "jobs": int(len(jobs)),
         "top_recommendations": 3
+    })
+@app.route("/api/guardrails/spend/<int:student_id>", methods=["GET"])
+def spend_guardrail(student_id):
+
+    student = students[students["student_id"] == student_id]
+
+    if student.empty:
+        return jsonify({"error": "Student not found"}), 404
+
+    student = student.iloc[0]
+
+    skills = [
+        "Python",
+        "SQL",
+        "Flask",
+        "Machine_Learning",
+        "Communication"
+    ]
+
+    results = []
+
+    for _, job in jobs.iterrows():
+
+        score = 0
+
+        for skill in skills:
+            score += min(student[skill], job[skill])
+
+        if student["Experience"] >= job["Experience"]:
+            score += 50
+
+        if student["Location"] == job["Location"]:
+            score += 30
+
+        if score >= 450:
+            warning = "Safe to Apply"
+        elif score >= 350:
+            warning = "Apply Carefully"
+        else:
+            warning = "Low Fit Warning"
+
+        results.append({
+            "company": str(job["company"]),
+            "role": str(job["role"]),
+            "match_score": int(score),
+            "guardrail": warning
+        })
+
+    results = sorted(results, key=lambda x: x["match_score"], reverse=True)
+
+    return jsonify({
+        "student_id": int(student_id),
+        "results": results
     })
 
 if __name__ == "__main__":
