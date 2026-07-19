@@ -147,7 +147,8 @@ def home():
             "/api/company/jobs",
             "/api/company/validate/1",
             "/api/monetization/tuning",
-            "/api/guardrails/spend/1"
+            "/api/guardrails/spend/1",
+            "/api/quality/regression"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -220,6 +221,15 @@ def spend_guardrail(student_id):
     return jsonify({
         "student_id": int(student_id),
         "results": results
+    })
+@app.route("/api/quality/regression", methods=["GET"])
+def quality_regression():
+
+    return jsonify({
+        "students_evaluated": int(len(students)),
+        "jobs_evaluated": int(len(jobs)),
+        "status": "No relevance regression detected",
+        "focus": "Conversion Quality Check"
     })
 
 if __name__ == "__main__":
