@@ -149,7 +149,8 @@ def home():
             "/api/monetization/tuning",
             "/api/guardrails/spend/1",
             "/api/quality/regression",
-            "/api/quality/signoff"
+            "/api/quality/signoff",
+            "/api/trust/proctoring"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -242,6 +243,15 @@ def quality_signoff():
         "false_positive_rate": 0.05,
         "matching_quality": "Verified",
         "demo_status": "Ready"
+    })
+@app.route("/api/trust/proctoring", methods=["GET"])
+def trust_layer():
+
+    return jsonify({
+        "status": "Active",
+        "false_positive_reduction": True,
+        "violation_threshold": 3,
+        "focus": "AI Trust Layer"
     })
 
 if __name__ == "__main__":
