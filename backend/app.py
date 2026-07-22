@@ -150,7 +150,8 @@ def home():
             "/api/guardrails/spend/1",
             "/api/quality/regression",
             "/api/quality/signoff",
-            "/api/trust/proctoring"
+            "/api/trust/proctoring",
+            "/api/parser/status"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -252,6 +253,15 @@ def trust_layer():
         "false_positive_reduction": True,
         "violation_threshold": 3,
         "focus": "AI Trust Layer"
+    })
+@app.route("/api/parser/status", methods=["GET"])
+def parser_status():
+
+    return jsonify({
+        "parser_version": "v0",
+        "resume_parsing": "Completed",
+        "jd_parsing": "Completed",
+        "structured_skills": True
     })
 
 if __name__ == "__main__":

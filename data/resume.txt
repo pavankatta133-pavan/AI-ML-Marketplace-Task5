@@ -1,0 +1,10 @@
+Name: Rahul
+
+Skills
+
+Python
+SQL
+Flask
+Machine Learning
+Communication
+Git
