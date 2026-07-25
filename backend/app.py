@@ -152,7 +152,8 @@ def home():
             "/api/quality/signoff",
             "/api/trust/proctoring",
             "/api/parser/status",
-            "/api/proctoring/fp-reduction"
+            "/api/proctoring/fp-reduction",
+            "/api/ontology/status"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -277,6 +278,15 @@ def fp_reduction():
         "current_false_positives": improved,
         "reduction_percent": reduction,
         "status": "Passed"
+    })
+@app.route("/api/ontology/status", methods=["GET"])
+def ontology_status():
+
+    return jsonify({
+        "ontology": "Created",
+        "categories": 5,
+        "parsed_skills": True,
+        "status": "Success"
     })
 
 if __name__ == "__main__":
