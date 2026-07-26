@@ -153,7 +153,8 @@ def home():
             "/api/trust/proctoring",
             "/api/parser/status",
             "/api/proctoring/fp-reduction",
-            "/api/ontology/status"
+            "/api/ontology/status",
+            "/api/trust/signoff"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -287,6 +288,17 @@ def ontology_status():
         "categories": 5,
         "parsed_skills": True,
         "status": "Success"
+    })
+@app.route("/api/trust/signoff", methods=["GET"])
+def trust_signoff():
+
+    return jsonify({
+        "resume_parser": "Approved",
+        "jd_parser": "Approved",
+        "ontology_mapping": "Approved",
+        "proctoring": "Approved",
+        "false_positive_reduction": "Approved",
+        "overall_status": "Ready for Demo"
     })
 
 if __name__ == "__main__":
