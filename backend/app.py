@@ -155,7 +155,7 @@ def home():
             "/api/proctoring/fp-reduction",
             "/api/ontology/status",
             "/api/trust/signoff",
-            "/api/recommendation/v1"
+            "/api/recommendation/v1","/api/dashboard/recommendations"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -312,6 +312,32 @@ def recommendation_v1():
             "Job Ranking",
             "Recommendation Generation"
         ]
+    })
+@app.route("/api/dashboard/recommendations", methods=["GET"])
+def dashboard_recommendations():
+
+    data = [
+        {
+            "company": "Google",
+            "role": "ML Engineer",
+            "score": 95
+        },
+        {
+            "company": "Infosys",
+            "role": "Python Developer",
+            "score": 88
+        },
+        {
+            "company": "Amazon",
+            "role": "Data Analyst",
+            "score": 82
+        }
+    ]
+
+    return jsonify({
+        "dashboard": "Placement Dashboard",
+        "recommendations": data,
+        "status": "Live"
     })
 
 if __name__ == "__main__":
