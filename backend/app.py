@@ -154,7 +154,8 @@ def home():
             "/api/parser/status",
             "/api/proctoring/fp-reduction",
             "/api/ontology/status",
-            "/api/trust/signoff"
+            "/api/trust/signoff",
+            "/api/recommendation/v1"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -299,6 +300,18 @@ def trust_signoff():
         "proctoring": "Approved",
         "false_positive_reduction": "Approved",
         "overall_status": "Ready for Demo"
+    })
+@app.route("/api/recommendation/v1", methods=["GET"])
+def recommendation_v1():
+
+    return jsonify({
+        "version": "v1",
+        "status": "Ready",
+        "features": [
+            "Skill Matching",
+            "Job Ranking",
+            "Recommendation Generation"
+        ]
     })
 
 if __name__ == "__main__":
