@@ -155,7 +155,9 @@ def home():
             "/api/proctoring/fp-reduction",
             "/api/ontology/status",
             "/api/trust/signoff",
-            "/api/recommendation/v1","/api/dashboard/recommendations"
+            "/api/recommendation/v1",
+            "/api/dashboard/recommendations",
+            "/api/admin/review"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -338,6 +340,33 @@ def dashboard_recommendations():
         "dashboard": "Placement Dashboard",
         "recommendations": data,
         "status": "Live"
+    })
+@app.route("/api/admin/review", methods=["GET"])
+def admin_review():
+
+    return jsonify({
+        "console": "Admin Console",
+        "review_queue": [
+            {
+                "student": "Rahul",
+                "company": "Google",
+                "status": "Pending Review",
+                "explanation": "Strong Python, SQL and Machine Learning match."
+            },
+            {
+                "student": "Rahul",
+                "company": "Infosys",
+                "status": "Approved",
+                "explanation": "Python and Flask skills satisfy most requirements."
+            },
+            {
+                "student": "Rahul",
+                "company": "Amazon",
+                "status": "Pending Review",
+                "explanation": "Good SQL skills, but Excel knowledge is recommended."
+            }
+        ],
+        "status": "Ready"
     })
 
 if __name__ == "__main__":
