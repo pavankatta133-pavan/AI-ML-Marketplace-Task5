@@ -157,7 +157,8 @@ def home():
             "/api/trust/signoff",
             "/api/recommendation/v1",
             "/api/dashboard/recommendations",
-            "/api/admin/review"
+            "/api/admin/review",
+            "/api/itembank/quality"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -367,6 +368,24 @@ def admin_review():
             }
         ],
         "status": "Ready"
+    })
+@app.route("/api/itembank/quality", methods=["GET"])
+def item_bank_quality():
+
+    return jsonify({
+        "status": "Success",
+        "total_questions": 4,
+        "healthy_questions": 2,
+        "weak_questions": [
+            {
+                "question_id": 2,
+                "reason": "Low usage and low accuracy"
+            },
+            {
+                "question_id": 4,
+                "reason": "Low usage and low accuracy"
+            }
+        ]
     })
 
 if __name__ == "__main__":
