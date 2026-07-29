@@ -158,7 +158,8 @@ def home():
             "/api/recommendation/v1",
             "/api/dashboard/recommendations",
             "/api/admin/review",
-            "/api/itembank/quality"
+            "/api/itembank/quality",
+            "/api/recommendation/validate"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -384,6 +385,29 @@ def item_bank_quality():
             {
                 "question_id": 4,
                 "reason": "Low usage and low accuracy"
+            }
+        ]
+    })
+@app.route("/api/recommendation/validate", methods=["GET"])
+def recommendation_validate():
+
+    return jsonify({
+        "status": "Validation Complete",
+        "validated_recommendations": [
+            {
+                "company": "Google",
+                "score": 95,
+                "validation": "Highly Recommended"
+            },
+            {
+                "company": "Infosys",
+                "score": 87,
+                "validation": "Recommended"
+            },
+            {
+                "company": "Amazon",
+                "score": 72,
+                "validation": "Needs Review"
             }
         ]
     })
