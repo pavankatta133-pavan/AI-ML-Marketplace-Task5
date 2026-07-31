@@ -160,7 +160,8 @@ def home():
             "/api/admin/review",
             "/api/itembank/quality",
             "/api/recommendation/validate",
-            "/api/fairness/audit"
+            "/api/fairness/audit",
+            "/api/drift/status"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -422,6 +423,17 @@ def fairness_audit():
         "female_recommendations": 2,
         "bias_status": "No Significant Bias",
         "next_step": "Continue fairness analysis"
+    })
+@app.route("/api/drift/status", methods=["GET"])
+def drift_status():
+
+    return jsonify({
+        "status": "Drift Detected",
+        "historical_average": 91.0,
+        "current_average": 80.0,
+        "drift_value": 11.0,
+        "retraining": "Triggered",
+        "pipeline_status": "Active"
     })
 
 if __name__ == "__main__":
