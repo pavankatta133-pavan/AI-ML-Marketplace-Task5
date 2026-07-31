@@ -159,7 +159,8 @@ def home():
             "/api/dashboard/recommendations",
             "/api/admin/review",
             "/api/itembank/quality",
-            "/api/recommendation/validate"
+            "/api/recommendation/validate",
+            "/api/fairness/audit"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -410,6 +411,17 @@ def recommendation_validate():
                 "validation": "Needs Review"
             }
         ]
+    })
+@app.route("/api/fairness/audit", methods=["GET"])
+def fairness_audit():
+
+    return jsonify({
+        "status": "Audit Started",
+        "total_recommendations": 4,
+        "male_recommendations": 2,
+        "female_recommendations": 2,
+        "bias_status": "No Significant Bias",
+        "next_step": "Continue fairness analysis"
     })
 
 if __name__ == "__main__":
