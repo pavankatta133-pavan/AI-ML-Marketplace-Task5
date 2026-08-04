@@ -163,7 +163,8 @@ def home():
             "/api/fairness/audit",
             "/api/drift/status",
             "/api/mlops/status",
-            "/api/launch/signoff"
+            "/api/launch/signoff",
+            "/api/production/status"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -466,6 +467,17 @@ def launch_signoff():
         "model_signoff": "Approved",
         "registered_models": 2,
         "production_ready": True
+    })
+@app.route("/api/production/status", methods=["GET"])
+def production_status():
+
+    return jsonify({
+        "status": "Production Monitoring Active",
+        "running_model": "Recommendation_Model_V1",
+        "availability": "99.9%",
+        "latency_ms": 48,
+        "daily_requests": 1250,
+        "overall_health": "Healthy"
     })
 
 if __name__ == "__main__":
