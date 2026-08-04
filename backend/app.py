@@ -162,7 +162,8 @@ def home():
             "/api/recommendation/validate",
             "/api/fairness/audit",
             "/api/drift/status",
-            "/api/mlops/status"
+            "/api/mlops/status",
+            "/api/launch/signoff"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -455,6 +456,16 @@ def mlops_status():
                 "Experience"
             ]
         }
+    })
+@app.route("/api/launch/signoff", methods=["GET"])
+def launch_signoff():
+
+    return jsonify({
+        "status": "Launch Approved",
+        "fairness_audit": "Completed",
+        "model_signoff": "Approved",
+        "registered_models": 2,
+        "production_ready": True
     })
 
 if __name__ == "__main__":
