@@ -161,7 +161,8 @@ def home():
             "/api/itembank/quality",
             "/api/recommendation/validate",
             "/api/fairness/audit",
-            "/api/drift/status"
+            "/api/drift/status",
+            "/api/mlops/status"
         ]
     })
 @app.route("/api/evaluation/baseline", methods=["GET"])
@@ -434,6 +435,26 @@ def drift_status():
         "drift_value": 11.0,
         "retraining": "Triggered",
         "pipeline_status": "Active"
+    })
+@app.route("/api/mlops/status", methods=["GET"])
+def mlops_status():
+
+    return jsonify({
+        "status": "MLOps Foundation Live",
+        "model_registry": {
+            "registered_models": 2,
+            "production_model": "Recommendation_Model_V1"
+        },
+        "feature_store": {
+            "status": "Active",
+            "features": [
+                "Python",
+                "SQL",
+                "Machine Learning",
+                "Communication",
+                "Experience"
+            ]
+        }
     })
 
 if __name__ == "__main__":
